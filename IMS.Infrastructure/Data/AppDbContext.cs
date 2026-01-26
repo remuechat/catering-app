@@ -22,7 +22,7 @@ namespace IMS.Infrastructure.Data
             optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;" +
                 "Initial Catalog=AppDb;Integrated Security=True; " +
                 "TrustServerCertificate=True;");
-            optionsBuilder.ConfigureWarnings(w =>
+            optionsBuilder.ConfigureWarnings(static w =>
             w.Ignore(RelationalEventId.PendingModelChangesWarning));
         }
     }
