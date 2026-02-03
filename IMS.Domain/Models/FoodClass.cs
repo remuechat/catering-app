@@ -15,11 +15,6 @@ public enum FoodType
 
 namespace IMS.Domain.Models
 {
-
-    public class FoodClass { 
-    
-    }
-
     public class Food
     {
         [Required]
@@ -46,47 +41,48 @@ namespace IMS.Domain.Models
         }
     }
 
-    internal class Menu
+    public class Menu
     {
         [Key]
         Guid MenuID { get; set; }
-        String MenuName { get; set; }
-        List<Food> FoodsInMenu { get; set; }
+        String? MenuName { get; set; }
+        public virtual ICollection<OrderItem>? MenuItems { get; set; }
     }
 
-    internal class MealOrder
+    public class OrderItem { 
+        public Guid OrderItemID { get; set; }
+        public Guid OrderID { get; set; }
+        public Guid FoodID { get; set; }
+        public int Quantity { get; set; }
+    }
+
+    public class Order
     {
         [Key]
-        Guid MealOrderID { get; set; }
-
-        // CRITICAL: Make sure that this order idempotent
+        Guid OrderID { get; set; }
 
         DateTime OrderDate { get; set; }
-        List<Food> FoodsOrdered { get; set; }
-        
-        decimal? TotalPrice { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
 
-        // CHORE: evaluate this ONLY WHEN NEEDED, NOT NOW (caching strategy)
-        //{ 
-        //    get 
-        //    {
-        //        decimal total = 0;
-        //        foreach (var food in FoodsOrdered)
-        //        {
-        //            total += food.FoodPrice;
-        //        }
-        //        return total;
-        //    }
-        //}
+        public Order()
+        {
+            OrderID = Guid.NewGuid();
+            OrderDate = DateTime.Now;
+            OrderItems = new List<OrderItem>();
+        }
     }
 
-    internal class MealPackage
+    public class Cart {
+        [Key]
+        Guid CartID { get; set; }
+        public virtual ICollection<Order>? CartItems { get; set; }
+    }
+
+    public class MealPackage
     {
         [Key]
         Guid MealPackageID { get; set; }
-        String PackageName { get; set; }
-        List<Food>? FoodsInPackage { get; set; }
-        decimal PackagePrice { get; set; }
+        String? PackageName { get; set; }
+        public virtual ICollection<OrderItem>? MenuItems { get; set; }
     }
-
 }

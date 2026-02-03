@@ -28,6 +28,8 @@ app.UseHttpsRedirection();
 
 // YES! You can edit these if you'd like!
 var _foods = new List<Food>();
+var _orders = new List<Order>();
+var _cart = new List<Cart>();
 
 app.MapPost("/foods", (Food food) =>
 {
@@ -36,6 +38,15 @@ app.MapPost("/foods", (Food food) =>
 
 app.MapGet("/foods", () => {
     return _foods;
+});
+
+app.MapPost("/orders", (Order order) =>
+{
+    _orders.Add(order);
+});
+
+app.MapGet("/orders", () => {
+    return _orders;
 });
 
 app.MapGet("/", () =>
