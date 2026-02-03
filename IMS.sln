@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36301.6 d17.14
+# Visual Studio Version 18
+VisualStudioVersion = 18.2.11415.280 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMS.Application", "IMS.Application\IMS.Application.csproj", "{DAEA7388-DB53-46D2-A93D-DC39D73EF7AE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{62F90223-2E09-4C55-A54D-52BD10821E81} = {62F90223-2E09-4C55-A54D-52BD10821E81}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMS.Domain", "IMS.Domain\IMS.Domain.csproj", "{7A9525FB-33BC-4D9A-9E1D-64D852AB8AE6}"
 EndProject

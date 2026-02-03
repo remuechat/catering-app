@@ -1,4 +1,6 @@
 using IMS.Domain.Models;
+using IMS.Service.Interfaces;
+using IMS.Service.Services;
 
 // ABSOLUTELY DO NOT TOUCH THESE!
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddControllers();
+
+builder.Services.AddScoped<IFoodService, FoodService>();
 
 var app = builder.Build();
 
@@ -23,35 +28,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.MapControllers();
 app.UseHttpsRedirection();
-
-
-// YES! You can edit these if you'd like!
-var _foods = new List<Food>();
-var _orders = new List<Order>();
-var _cart = new List<Cart>();
-
-app.MapPost("/foods", (Food food) =>
-{
-    _foods.Add(food);
-});
-
-app.MapGet("/foods", () => {
-    return _foods;
-});
-
-app.MapPost("/orders", (Order order) =>
-{
-    _orders.Add(order);
-});
-
-app.MapGet("/orders", () => {
-    return _orders;
-});
-
-app.MapGet("/", () =>
-{
-    return "<h1>Hi</h1>";
-});
 
 app.Run();
