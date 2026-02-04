@@ -1,63 +1,108 @@
-﻿using IMS.Domain.Models;
-using IMS.Service.Interfaces;
-using Microsoft.AspNetCore.Authorization;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using IMS.Service.Data;
+using IMS.Domain.Models.Foods;
 
 namespace IMS.Service.Controllers.Admin
 {
+    [Route("api/admin/[controller]")]
     [ApiController]
-    [Route("api/admin/foods")]
-    //[Authorize(Roles = "Admin")]
     public class FoodsController : ControllerBase
     {
-        private readonly IFoodService _foodService;
+        private readonly AppDbContext _context;
 
-        public FoodsController(IFoodService foodService)
+        public FoodsController(AppDbContext context)
         {
-            _foodService = foodService;
-        }
-        
-        // CREATE: api/admin/foods
-        [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateFood([FromBody] Food food)
-        {
-            _foodService.AddFood(food);
-            return Ok();
+            _context = context;
         }
 
-        // READ: api/admin/foods
+        // GET: api/admin/Foods
         [HttpGet]
-        public async Task<IActionResult> GetFood()
+        public async Task<ActionResult<IEnumerable<Food>>> GetFood()
         {
-            var foods = _foodService.GetFood();
-            return Ok(foods);
+            return await _context.Food.ToListAsync();
         }
 
-        // MAKE THIS MORE CLEARER
-        // If I remember correctly, there's a bad request annotator feature here
-        // Further, there's also partial patching where you recieve the entire item
-        // But then only update the necessary details using the ORM
-
-        //  UPDATE: api/admin/foods/{id}
-        [HttpPatch("{foodId:guid}")]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateFood(Guid foodID, [FromBody] Food food)
+        // GET: api/admin/Foods/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Food>> GetFood(int id)
         {
-            if (foodID != food.FoodID)
+            var food = await _context.Food.FindAsync(id);
+
+            if (food == null)
+            {
+                return NotFound();
+            }
+
+            return food;
+        }
+
+        // PUT: api/admin/Foods/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutFood(int id, Food food)
+        {
+            if (id != food.FoodId)
+            {
                 return BadRequest();
+            }
 
-            _foodService.UpdateFood(foodID, food);
-            return Ok();
+            _context.Entry(food).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!FoodExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
         }
 
-        // DELETE: api/admin/foods/{id}
-        [HttpDelete("{foodId:guid}")]
-        public async Task<IActionResult> DeleteFood(Guid foodId)
+        // POST: api/admin/Foods
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<Food>> PostFood(Food food)
         {
-            _foodService.DeleteFood(foodId);
-            return Ok();
+            _context.Food.Add(food);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetFood", new { id = food.FoodId }, food);
+        }
+
+        // DELETE: api/admin/Foods/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteFood(int id)
+        {
+            var food = await _context.Food.FindAsync(id);
+            if (food == null)
+            {
+                return NotFound();
+            }
+
+            _context.Food.Remove(food);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        private bool FoodExists(int id)
+        {
+            return _context.Food.Any(e => e.FoodId == id);
         }
     }
 }

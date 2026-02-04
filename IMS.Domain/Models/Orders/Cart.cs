@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMS.Domain.Models
+namespace IMS.Domain.Models.Orders
 {
     public class Cart
     {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace IMS.Domain.Models
+namespace IMS.Domain.Models.Users
 {
     public class BaseClass
     {

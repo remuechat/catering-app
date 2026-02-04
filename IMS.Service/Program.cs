@@ -1,34 +1,43 @@
 using IMS.Domain.Models;
-using IMS.Service.Interfaces;
-using IMS.Service.Services;
+using IMS.Service.Data;
+using Microsoft.EntityFrameworkCore;
 
-// ABSOLUTELY DO NOT TOUCH THESE!
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+// Services
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
-builder.Services.AddScoped<IFoodService, FoodService>();
+// Use InMemory with name from config (or direct name)
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseInMemoryDatabase("IMS.TestDB") // Simple, clean approach
+);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure pipeline
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "IMS API v1");
-        options.RoutePrefix = "swagger"; 
+        options.RoutePrefix = "swagger";
     });
+    app.MapOpenApi();
+}
+
+// Initialize InMemory database (NO migrations!)
+// Migrate later on IF YOU HAVE AN ACTUAL DB!
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.EnsureCreated();
+    Console.WriteLine("In-memory database created successfully");
 }
 
 app.MapControllers();
 app.UseHttpsRedirection();
-
 app.Run();

@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMS.Domain.Models
+namespace IMS.Domain.Enums
 {
-    internal class DeliveryClass
+    public enum DeliveryCategory
     {
+        DineIn,
+        TakeOut,
+        Delivery,
     }
 }

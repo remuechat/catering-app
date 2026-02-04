@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace IMS.Domain.Enums
 {
-    public enum DeliveryType
+    public enum FoodCategory
     {
-        DineIn,
-        TakeOut,
-        Delivery,
+        Viand,
+        Rice,
+        Desert,
     }
 }

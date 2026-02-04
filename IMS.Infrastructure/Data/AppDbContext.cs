@@ -1,4 +1,4 @@
-﻿using IMS.Domain.Models;
+﻿using IMS.Domain.Models.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;

@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMS.Domain.Enums
+namespace IMS.Domain.Models.Orders
 {
-    public enum FoodType
+    internal class Delivery
     {
-        Viand,
-        Rice,
-        Desert,
     }
 }
