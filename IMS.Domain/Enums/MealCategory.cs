@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IMS.Domain.Enums
 {
-    public enum FoodCategory
+    public enum MealCategory
     {
         Viand,
         Rice,

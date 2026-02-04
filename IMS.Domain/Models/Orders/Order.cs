@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +14,12 @@ namespace IMS.Domain.Models.Orders
     {
         [Key]
         public Guid OrderID { get; } = Guid.NewGuid();
+        public Guid UserID { get; set; }
+
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime OrderDate { get; } = DateTime.Now;
-        public DeliveryCategory DeliveryType { get; set; }
-        public String? Address { get; set; } // integrate Google Maps API later
-        public Boolean IsInPoblacion { get; set; } // integrate Google Maps API later
-        // add image later on
-        public virtual ICollection<MealPackage>? MealPackage { get; set; }
+        public DeliveryStatus DeliveryType { get; set; }
+        public String? Address { get; set; } // integrate Google Maps API later to calculate costing
     }
 }

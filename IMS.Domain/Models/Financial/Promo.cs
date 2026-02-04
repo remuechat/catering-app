@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMS.Domain.Models.Orders
+namespace IMS.Domain.Models.Financial
 {
-    internal class Delivery
+    public class Promo
     {
     }
 }

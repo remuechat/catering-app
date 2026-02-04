@@ -7,23 +7,23 @@ using System.Text;
 using System.Threading.Tasks;
 using IMS.Domain.Enums;
 
-namespace IMS.Domain.Models.Foods
+namespace IMS.Domain.Models.Meals
 {
-    public class Food
+    public class Meal
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int FoodId { get; set; }
+        public int MealId { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string FoodName { get; set; } = string.Empty;
+        public string MealName { get; set; } = string.Empty;
 
         public string? Description { get; set; }
 
-        public decimal FoodPrice { get; set; }
+        public decimal MealPrice { get; set; }
 
-        public FoodCategory FoodCategory { get; set; }
+        public MealCategory MealCategory { get; set; }
 
         public int StockQuantity { get; set; }
 
@@ -40,5 +40,7 @@ namespace IMS.Domain.Models.Foods
         public int CaloriesPerServing { get; set; }
         public virtual ICollection<DietaryCategory> DietaryCategoryType { get; set; } = 
             new List<DietaryCategory>();
+        
+        // THIS SHOULD HAVE AN IMAGE! 
     }
 }
