@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace IMS.Domain.Enums
 {
-    public enum DeliveryCategory
+    public enum PaymentMethodType
     {
-        DineIn,
-        TakeOut,
-        Delivery,
+        None = 0,
+        Cash = 1,
+        Gcash = 2,
+        Maya = 3,
+        Bank = 4,
+        QrPH = 5,
+        Check = 6,
     }
 }
