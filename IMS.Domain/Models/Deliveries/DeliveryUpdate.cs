@@ -10,9 +10,14 @@ namespace IMS.Domain.Models.Deliveries
 {
     public class DeliveryUpdate
     {
+        // Primary key
         public int DeliveryUpdateID { get; set; }
+
+        // Foreign and navigation keys
         public int DeliveryID { get; set; }
         public Delivery Delivery { get; set; } = new Delivery();
+
+        // Delivery update attributes
 
         public DeliveryStatus Status { get; set; }
         public DateTime UpdateDate { get; set; } = DateTime.Now;

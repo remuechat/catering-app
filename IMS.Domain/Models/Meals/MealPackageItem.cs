@@ -16,17 +16,17 @@ namespace IMS.Domain.Models.Meals
     {
         public class MealPackageItem
         {
-            // Relationship keys
+            // Primary key
             public Guid MealPackageItemID { get; set; } 
-            public Guid MealPackageID { get; set; }
 
-            // Juntion meal item object
+            // Foreign/navigation keys
+            public Guid MealPackageID { get; set; }
             public int MealID { get; set; }
             public Meal? Meal { get; set; }
          
-            // Meal request details
+            // Meal attributes
             public int RequestQuantity { get; set; }
             public string? RequestDescription { get; set; }
-            public decimal SubtotalPrice { get; set; }
+            public decimal Price { get; set; }
         }
     }

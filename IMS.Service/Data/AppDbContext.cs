@@ -3,7 +3,6 @@ using IMS.Domain.Enums;
 using IMS.Domain.Models.Audits;
 using IMS.Domain.Models.Financial;
 using IMS.Domain.Models.Meals;
-using IMS.Domain.Models.MealTags;
 using IMS.Domain.Models.Orders;
 using IMS.Domain.Models.Packages;
 using IMS.Domain.Models.Users.Identity;
@@ -27,7 +26,7 @@ namespace IMS.Service.Data
         // Access only for users
         public DbSet<Meal> Meals { get; set; }
         public DbSet<MealTag> MealTags { get; set; }
-        public DbSet<Promo> Promos { get; set; }
+        public DbSet<ApplicablePromo> Promos { get; set; }
         public DbSet<CateringPackage> CateringPackages { get; set; }
 
         // User-submitted data
@@ -36,7 +35,7 @@ namespace IMS.Service.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           
+            
             
             base.OnModelCreating(modelBuilder);
         }

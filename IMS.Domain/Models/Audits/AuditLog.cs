@@ -1,14 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using IMS.Domain.Models.Users.Identity;
+﻿using IMS.Domain.Models.Users.Identity;
 
 namespace IMS.Domain.Models.Audits
 {
     public class AuditLog
     {
+        // Primary Key
         public int AuditLogID { get; set; }
 
-        // Who performed the action
+        // Foreign key/navigation keys
+        public AppUser? User { get; set; }
         public int? UserID { get; set; }
         public string Username { get; set; } = string.Empty;
 

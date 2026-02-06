@@ -8,11 +8,13 @@ namespace IMS.Domain.Models.Orders
 {
     public class OrderItem
     {
-        // Junction identity
+        // Primary key
         public int OrderItemID { get; set; }
+
+        // Foreign/navigation keys
         public Guid OrderID { get; set; }
 
-        // Junction metadata
+        // Order item attributes
         public int Quantity { get; set; }
     }
 }

@@ -9,15 +9,18 @@ namespace IMS.Domain.Models.Meals
 {
     public class CateringPackage
     {
+        // Primary key
         public int CateringPackageID { get; set; }
+
+        // Foreign/navigation key
+        public int? PromoID { get; set; }
+        public ApplicablePromo? Promo { get; set; }
+        public List<MealPackageItem> PackageItems { get; set; } = new();
+
+        // Catering package attributes
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public decimal Price { get; set; }
-        public int? PromoID { get; set; }
-        public Promo? Promo { get; set; }
-
-        // Collection of meal items in this catering package
-        public List<MealPackageItem> PackageItems { get; set; } = new();
+        public decimal? CustomPrice { get; set; }
 
         // Have an image URL or path for the catering package 
         // And have strict calling parameters here later on 

@@ -13,13 +13,12 @@ namespace IMS.Domain.Models.Deliveries
 {
     public class Delivery
     {
+        // Primary key
         public int DeliveryID { get; set; }
 
-        // Foreign key to Order
+        // Foreign and navigation keys
         public Guid OrderID { get; set; }
         public Order Order { get; set; } = new();
-
-        // Delivery personnel information
         public int? DeliveryPersonnelID { get; set; }
         public AppUser? DeliveryPersonnel { get; set; }
 

@@ -8,9 +8,15 @@ using System.Threading.Tasks;
 namespace IMS.Domain.Models.Financial
 {
 
-    public class Promo
+    public class ApplicablePromo
     {
+        // Primary key
         public int PromoID { get; set; }
+        
+        // Foreign/navigation keys
+        public List<int> ApplicableProductIDs { get; set; } = new();
+
+        // ApplicablePromo attributes
         public string Code { get; set; } = string.Empty; 
         public string Description { get; set; } = string.Empty;
         public decimal DiscountValue { get; set; }
@@ -19,9 +25,6 @@ namespace IMS.Domain.Models.Financial
         public int UsedCount { get; set; } = 0;
         public DateTime ValidFrom { get; set; }
         public DateTime ValidUntil { get; set; }
-        public bool IsActive { get; set; } = true;
-        public List<int> ApplicableProductIDs { get; set; } = new();
-        public List<int> ApplicableUserIDs { get; set; } = new();    
-    
+        public bool IsActive { get; set; } = true;    
     }
 }

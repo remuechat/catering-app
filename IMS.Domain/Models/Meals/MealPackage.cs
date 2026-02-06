@@ -9,7 +9,10 @@ namespace IMS.Domain.Models.Packages
     {
         public Guid MealPackageID { get; set; }
         public int? CateringPackageID { get; set; }
+        public decimal MealPackagePrice => MealPackageItems?
+                                           .Sum(items => items.Price) ?? 0;
         public CateringPackage? CateringPackage { get; set; }
         public List<MealPackageItem>? MealPackageItems { get; set; } = new();
+
     }
 }

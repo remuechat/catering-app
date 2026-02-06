@@ -9,10 +9,16 @@ namespace IMS.Domain.Models.Financial
 {
     public class Payment
     {
+        // Primary key
         public required String PaymentID { get; set; }
+
+        // Foreign/navigation keys
+        public int RecieptID { get; set; }
+        public Receipt? Receipt { get; set; }
+
+        // Payment attributes
         public PaymentMethodType PaymentMethod { get; set; }
         public PaymentStatus PaymentStatus { get; set; }
-        public Decimal? TotalAmount { get; set;  }
         public DateTime TimeStamp { get; set; }  = DateTime.Now;
     }
 }

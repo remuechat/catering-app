@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using IMS.Domain.Enums;
-using IMS.Domain.Models.MealTags;
 
 namespace IMS.Domain.Models.Meals
 {
     public class Meal
     {
+        // Primary key
         public int MealID { get; set; }
+
+        // Meal attributes
         public string MealName { get; set; } = string.Empty;
         public string? Description { get; set; }
         public decimal MealPrice { get; set; }
