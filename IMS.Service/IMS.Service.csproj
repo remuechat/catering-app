@@ -29,6 +29,7 @@
   <ItemGroup>
     <Folder Include="Controllers\Admin\" />
     <Folder Include="Controllers\Customer\" />
+    <Folder Include="Data\Configurations\" />
   </ItemGroup>
 
 </Project>

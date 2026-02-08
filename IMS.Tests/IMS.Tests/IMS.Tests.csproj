@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit.v3" Version="3.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\IMS.Application\IMS.Application.csproj" />
+    <ProjectReference Include="..\..\IMS.Domain\IMS.Domain.csproj" />
+    <ProjectReference Include="..\..\IMS.Service\IMS.Service.csproj" />
+  </ItemGroup>
+
+</Project>

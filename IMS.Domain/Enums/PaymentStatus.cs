@@ -12,6 +12,7 @@ namespace IMS.Domain.Enums
         Issued,
         Paid,
         Refunded,
+        Voided,
         Cancelled
     }
 }

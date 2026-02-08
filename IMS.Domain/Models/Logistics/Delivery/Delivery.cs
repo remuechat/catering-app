@@ -9,7 +9,7 @@ using IMS.Domain.Enums;
 using IMS.Domain.Models.Orders;
 using IMS.Domain.Models.Users.Identity;
 
-namespace IMS.Domain.Models.Deliveries
+namespace IMS.Domain.Models.Logistics.Delivery
 {
     public class Delivery
     {

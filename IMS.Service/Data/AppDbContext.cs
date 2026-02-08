@@ -1,43 +1,34 @@
 ﻿using System.Linq;
+using System.Reflection;
 using IMS.Domain.Enums;
 using IMS.Domain.Models.Audits;
 using IMS.Domain.Models.Financial;
-using IMS.Domain.Models.Meals;
-using IMS.Domain.Models.Orders;
-using IMS.Domain.Models.Packages;
+using IMS.Domain.Models.Financial.Promos;
+using IMS.Domain.Models.Meals.MealItems;
+using IMS.Domain.Models.Meals.MealProduct;
 using IMS.Domain.Models.Users.Identity;
-using IMS.Domain.Models.Users.UserCart;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+namespace IMS.Service.Data;
 
-namespace IMS.Service.Data
+public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<int>, int>
 {
-    public class AppDbContext : IdentityDbContext<AppUser>
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+
+    // DbSets for your custom entities
+    public DbSet<Meal> Meals { get; set; }
+    public DbSet<MealTag> MealTags { get; set; }
+    public DbSet<MealProduct> MealProducts { get; set; }
+    public DbSet<Promo> Promos { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        base.OnModelCreating(modelBuilder);
 
-        // Admin modifiable data
-        // System generated data for compliance
-        public DbSet<AuditLog> AuditLogs { get; set; }
-        public DbSet<Receipt> Receipts { get; set; }
-
-        // Operator modifiable data
-        // Access only for users
-        public DbSet<Meal> Meals { get; set; }
-        public DbSet<MealTag> MealTags { get; set; }
-        public DbSet<ApplicablePromo> Promos { get; set; }
-        public DbSet<CateringPackage> CateringPackages { get; set; }
-
-        // User-submitted data
-        public DbSet<UserCart> Carts { get; set; }
-        public DbSet<Order> Orders { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            
-            
-            base.OnModelCreating(modelBuilder);
-        }
+        // CHORE: Add modelBuilder.Entity configurations 
+        //        for your entities here or in separate methods
+        //        to boost performance later on. 
+        //        Not needed for now though.
     }
 }

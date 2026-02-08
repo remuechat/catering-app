@@ -1,29 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IMS.Domain.Enums;
-using IMS.Domain.Models.Deliveries;
+﻿using IMS.Domain.Enums;
 using IMS.Domain.Models.Financial;
-using IMS.Domain.Models.Packages;
 using IMS.Domain.Models.Users.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace IMS.Domain.Models.Orders
 {
     public class Order
     {
         // Primary key
-        public Guid OrderID { get; } = Guid.NewGuid();
+        public int? OrderID { get; set; }
 
-        // Navigation/foreign keys
-        public int UserID { get; set; }
+        // Foreign key
+        public int? ReceiptID { get; set; }
+
+        // Navigation key
         public AppUser? Recipient { get; set; }
-        public Receipt? Receipt { get; set; }
-        public List<OrderItem> OrderItems { get; set; } = new();
-        public List<DeliveryUpdate> DeliveryHistory { get; set; } = new();
+        public ICollection<OrderMealProduct>? OrderItems { get; set; } = new List<OrderMealProduct>();
+
+        // Order attributes
+        public decimal OrderTotalAmount
+        {
+            get { return OrderItems?.Sum(item => item.ItemPrice) ?? 0; }
+        }
 
         // Order dated details
         public DateTime OrderDate { get; } = DateTime.Now;
@@ -39,7 +37,6 @@ namespace IMS.Domain.Models.Orders
         public string? TrackingNumber { get; set; }
         public string? CustomerNotes { get; set; }
         public string? SpecialInstructions { get; set; }
-
     }
 
 }

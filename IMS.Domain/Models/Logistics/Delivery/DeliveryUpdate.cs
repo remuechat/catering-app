@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IMS.Domain.Enums;
-using IMS.Domain.Models.Users.Identity; // Ensure that the correct Delivery type is referenced.
+using IMS.Domain.Models.Users.Identity;
+using Microsoft.EntityFrameworkCore;
 
-namespace IMS.Domain.Models.Deliveries
+namespace IMS.Domain.Models.Logistics.Delivery
 {
     public class DeliveryUpdate
     {
-        // Primary key
         public int DeliveryUpdateID { get; set; }
-
+        
         // Foreign and navigation keys
         public int DeliveryID { get; set; }
         public Delivery Delivery { get; set; } = new Delivery();
@@ -25,7 +25,6 @@ namespace IMS.Domain.Models.Deliveries
         public string? Location { get; set; }
         public string? Notes { get; set; }
 
-        // Optional: Who made the update (system, customer, delivery personnel)
         public string UpdatedBy { get; set; } = "System";
         public int? UpdatedByUserID { get; set; }
         public AppUser? UpdatedByUser { get; set; }

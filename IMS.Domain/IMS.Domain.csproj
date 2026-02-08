@@ -20,4 +20,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Models\Logistics\Events\" />
+    <Folder Include="Primitives\" />
+  </ItemGroup>
+
 </Project>
