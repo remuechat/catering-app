@@ -12,15 +12,16 @@ public class Meal
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int MealID { get; set; }
+    public int OperatorID { get; set; }
 
     // Navigation items
-    private AppUser? _owner;
-    public virtual ICollection<MealTagJunction> MealTags { get; set; } = new List<MealTagJunction>();
+    //[ForeignKey(nameof(OperatorID))]
+    //private readonly AppUser? Operator;
+    public virtual ICollection<MealTagJunction> MealTags { get; set; } = [];
 
     // Attributes
     [Required(ErrorMessage = "Meal.MealName is required.")]
     [StringLength(100, ErrorMessage = "Meal.MealName must be less than 100 characters.")]
-    [Column("MealName")]
     public string MealName { get; set; } = string.Empty;
 
     [StringLength(500, ErrorMessage = "Meal.Description must be less than 500 characters.")]
@@ -53,8 +54,7 @@ public class Meal
     public DateTime LastCreated { get; set; }
 
     [Required(ErrorMessage = "Meal.LastModifiedByUserID is required.")]
-    [ForeignKey(nameof(_owner))]
-    public int LastModifiedByUserID { get; set; }
+    public int LastModifiedByOperatorID { get; set; } 
 
     [Required(ErrorMessage = "Meal.LastModifiedDate is required.")]
     public DateTime LastModifiedDate { get; set; }
@@ -62,6 +62,5 @@ public class Meal
     // Optional attributes (for now)
     [Url(ErrorMessage = "Meal.ImageUrl must be a valid URL.")]
     [StringLength(500, ErrorMessage = "Meal.ImageUrl must be less than 500 characters.")]
-    [Display(Name = "Image URL")]
     public string? ImageUrl { get; set; }
 }

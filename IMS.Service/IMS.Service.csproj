@@ -27,8 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Admin\" />
-    <Folder Include="Controllers\Customer\" />
+    <Folder Include="Controllers\Logistics\" />
     <Folder Include="Data\Configurations\" />
   </ItemGroup>
 

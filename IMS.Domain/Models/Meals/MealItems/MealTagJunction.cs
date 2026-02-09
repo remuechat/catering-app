@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 namespace IMS.Domain.Models.Meals.MealItems;
 
 // Junction entity between Meal and PreferenceTag
+[Owned]
 public class MealTagJunction
 {
     // Primary key

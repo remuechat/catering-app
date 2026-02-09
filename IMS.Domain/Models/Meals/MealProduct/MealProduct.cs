@@ -20,7 +20,7 @@ public class MealProduct
     [Required]
     public AppUser Owner { get; set; } = null!;
 
-    public ICollection<MealProductJunction> MealProducts { get; set; } = new List<MealProductJunction>();
+    public ICollection<MealProductItem> MealProducts { get; set; } = [];
 
     public Promo? Promo { get; set; }
 

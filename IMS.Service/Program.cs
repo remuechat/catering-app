@@ -12,7 +12,7 @@ builder.Services.AddControllers();
 
 // Use InMemory with name from config (or direct name)
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseInMemoryDatabase("IMS.TestDB") // Simple, clean approach
+    options.UseInMemoryDatabase("IMS.TestDB") 
 );
 
 var app = builder.Build();
