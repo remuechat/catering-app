@@ -10,7 +10,7 @@ using IMS.Service.Data;
 
 namespace IMS.Service.Controllers.Product
 {
-    [Route("api/[controller]")]
+    [Route("api/meal-tags")]
     [ApiController]
     public class MealTagsController : ControllerBase
     {

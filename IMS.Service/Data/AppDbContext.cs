@@ -13,12 +13,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace IMS.Service.Data;
 
 public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<int>, int>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+    // CHORE: Add password security, hashing and database salting later on.
+
+
     // MEALS and related entities
     public DbSet<Meal> Meals { get; set; }
     public DbSet<MealTag> MealTags { get; set; }
