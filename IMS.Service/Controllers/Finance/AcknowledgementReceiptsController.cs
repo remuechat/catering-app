@@ -10,7 +10,7 @@ using IMS.Service.Data;
 
 namespace IMS.Service.Controllers.Finance
 {
-    [Route("api/[controller]")]
+    [Route("api/acklgm-receipt")]
     [ApiController]
     public class AcknowledgementReceiptsController : ControllerBase
     {

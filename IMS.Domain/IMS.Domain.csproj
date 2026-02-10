@@ -23,6 +23,7 @@
   <ItemGroup>
     <Folder Include="Interfaces\" />
     <Folder Include="Models\Logistics\Events\" />
+    <Folder Include="Dtos\" />
     <Folder Include="Primitives\" />
   </ItemGroup>
 
