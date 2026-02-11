@@ -29,6 +29,7 @@
   <ItemGroup>
     <Folder Include="Controllers\Logistics\" />
     <Folder Include="Data\Configurations\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

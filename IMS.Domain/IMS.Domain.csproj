@@ -21,9 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DTOs\Response\" />
+    <Folder Include="DTOs\Request\" />
+    <Folder Include="Entities\Logistics\Events\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="Models\Logistics\Events\" />
-    <Folder Include="Dtos\" />
+    <Folder Include="Services\" />
+    <Folder Include="ViewModels\" />
     <Folder Include="Primitives\" />
   </ItemGroup>
 
