@@ -21,8 +21,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DTOs\Response\" />
+    <Folder Include="DTOs\Request\" />
+    <Folder Include="Entities\Logistics\Events\" />
     <Folder Include="Interfaces\" />
+<<<<<<< HEAD
     <Folder Include="Models\Logistics\Events\" />
+=======
+    <Folder Include="Services\" />
+>>>>>>> 8f53a915b1f8e1367d7e21826cd696e7aa0e8bb7
     <Folder Include="ViewModels\" />
     <Folder Include="Primitives\" />
   </ItemGroup>
