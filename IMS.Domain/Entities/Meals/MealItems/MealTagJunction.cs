@@ -2,19 +2,23 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace IMS.Domain.Models.Meals.MealItems;
+namespace IMS.Domain.Entities.Meals.MealItems;
 
-// Junction entity between Meal and PreferenceTag
+/// <summary>
+/// Junction entity that uses many [MealTag]s to categorize a [Meal] in the domain model.
+/// </summary>
+
 [Owned]
 public class MealTagJunction
 {
-    // Primary key
     [ForeignKey(nameof(Meal))]
     public int? MealID { get; set; }
+
+
     [ForeignKey(nameof(MealTag))]
     public int? MealTagID { get; set; }
 
-    // Navigation keys
-    public Meal? Meal { get; set; }
-    public MealTag? MealTag { get; set; }
+    // Navigation entities
+    public virtual Meal? Meal { get; set; }
+    public virtual MealTag? MealTag { get; set; }
 }

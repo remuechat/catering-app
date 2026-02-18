@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace IMS.Domain.Models.Financial.Promos;
+namespace IMS.Domain.Entities.Financial.Promos;
 
+/// <summary>
+/// The operator generates the promos for their entire business.
+/// Can be added to mealproducts (in case of catering packages).
+/// Can be added to orders itself (in case you are giving sales to customers).
+/// </summary>
+/// 
 public class Promo
 {
     // Primary key

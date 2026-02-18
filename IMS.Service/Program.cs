@@ -1,4 +1,4 @@
-using IMS.Domain.Models;
+using IMS.Domain.Entities;
 using IMS.Service.Data;
 using Microsoft.EntityFrameworkCore;
 

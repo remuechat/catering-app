@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using IMS.Domain.Models.Financial.Promos;
+using IMS.Domain.Entities.Financial.Promos;
 using IMS.Service.Data;
 
 namespace IMS.Service.Controllers.Finance
 {
-    [Route("api/promos")]
+    [Route("api/[controller]")]
     [ApiController]
     public class PromosController : ControllerBase
     {

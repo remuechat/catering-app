@@ -1,11 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using IMS.Domain.Entities.Financial.Promos;
+using IMS.Domain.Entities.Orders;
+using IMS.Domain.Entities.Users.Identity;
 using IMS.Domain.Enums;
-using IMS.Domain.Models.Financial.Promos;
-using IMS.Domain.Models.Orders;
-using IMS.Domain.Models.Users.Identity;
 
-namespace IMS.Domain.Models.Financial.Receipt;
+namespace IMS.Domain.Entities.Financial.AcknowledgementReceipts;
+
+/// <summary>
+/// This is NOT a final receipt. This just recognizes that an order is checked out,
+/// and an order is on the way or reserved already. 
+/// 
+/// TECH DEBT: Transition this Rich Domain Model into an Anemic Model later on.
+/// </summary>
 
 public class AcknowledgementReceipt
 {
@@ -22,13 +29,13 @@ public class AcknowledgementReceipt
     public int? PromoID { get; private set; }
 
     [ForeignKey("OrderID")]
-    public virtual Order Order { get; private set; } = null!;
+    public virtual Order? Order { get; private set; }
 
     [ForeignKey("CustomerID")]
-    public virtual AppUser Customer { get; private set; } = null!;
+    public virtual AppUser? Customer { get; private set; }
 
     [ForeignKey("PromoID")]
-    public virtual Promo? Promo { get; private set; } = null!;
+    public virtual Promo? Promo { get; private set; }
 
     // Receipt details
     [Required]
@@ -43,12 +50,10 @@ public class AcknowledgementReceipt
     [Required]
     public PaymentStatus Status { get; private set; }
 
-    // Promo/Memo field
     [Column(TypeName = "nvarchar(MAX)")]
     [StringLength(1000)]
     public string Notes { get; private set; } = string.Empty;
 
-    // Stored financial values (not calculated properties for EF compatibility)
     [Required]
     [Column(TypeName = "decimal(18,2)")]
     public decimal Subtotal { get; private set; }
@@ -69,11 +74,9 @@ public class AcknowledgementReceipt
     [Column(TypeName = "decimal(18,2)")]
     public decimal GrandTotal { get; private set; }
 
-    // Calculated properties for business logic (not mapped to database)
     [NotMapped]
     public decimal TaxableAmount => Subtotal - DiscountAmount;
 
-    // Payment information
     [Required]
     [StringLength(50)]
     public string PaymentMethod { get; private set; } = string.Empty;
@@ -84,16 +87,6 @@ public class AcknowledgementReceipt
     [Required]
     [StringLength(3)]
     public string Currency { get; private set; } = "PHP";
-
-    // Business information
-    [StringLength(100)]
-    public string CompanyName { get; private set; } = string.Empty;
-
-    [StringLength(500)]
-    public string CompanyAddress { get; private set; } = string.Empty;
-
-    [StringLength(50)]
-    public string CompanyTaxID { get; private set; } = string.Empty;
 
     // Customer information
     [Required]
@@ -108,10 +101,8 @@ public class AcknowledgementReceipt
     [StringLength(500)]
     public string CustomerAddress { get; private set; } = string.Empty;
 
-    // Private constructor for EF Core
     private AcknowledgementReceipt() { }
 
-    // Factory method for creating receipts
     public static AcknowledgementReceipt Create(
         string receiptNumber,
         Guid orderId,
@@ -137,7 +128,6 @@ public class AcknowledgementReceipt
             CustomerEmail = customerEmail,
             Subtotal = subtotal,
             PromoID = promoId,
-            CompanyName = companyName,
             IssueDate = DateTime.Now,
             Status = PaymentStatus.Issued,
             Currency = "PHP"
@@ -147,8 +137,6 @@ public class AcknowledgementReceipt
 
         return receipt;
     }
-
-    // Main calculation method that encapsulates the business logic
     private void CalculateFinancials()
     {
         DiscountAmount = CalculateDiscount();

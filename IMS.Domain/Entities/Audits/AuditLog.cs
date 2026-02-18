@@ -1,38 +1,66 @@
-﻿using IMS.Domain.Models.Users.Identity;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using IMS.Domain.Entities.Users.Identity;
+using IMS.Domain.Enums;
 
-namespace IMS.Domain.Models.Audits
+namespace IMS.Domain.Entities.Audits;
+
+/// <summary>
+/// This is a generic and simple editing log for ALL of our entities.
+/// </summary>
+
+public class AuditLog
 {
-    public class AuditLog
-    {
-        // Primary Key
-        public int AuditLogID { get; set; }
+    // Primary Key
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int AuditLogID { get; set; }
 
-        // Foreign key/navigation keys
-        public AppUser? User { get; set; }
-        public int? UserID { get; set; }
-        public string Username { get; set; } = string.Empty;
+    // Foreign key/navigation keys
+    [ForeignKey("User")]
+    public int? UserID { get; set; }
+    public AppUser? User { get; set; }
 
-        // AuditLog Attributes
-        // What action was performed
-        public string Action { get; set; } = string.Empty;      // "CREATE", "UPDATE", "DELETE"
-        public string EntityType { get; set; } = string.Empty;  // "Order", "Meal", "User"
-        public int EntityID { get; set; }                       // ID of the affected entity
+    // If you want to know what actions were performed and to which,
+    [Required]
+    public AuditActionType AuditActionType { get; set; }
 
-        // When it happened
-        public DateTime Timestamp { get; set; } = DateTime.UtcNow;
+    [Required]
+    [StringLength(100)]
+    public string EntityType { get; set; } = string.Empty;
 
-        // Change details
-        public string? OldValues { get; set; }                  // JSON serialized previous state
-        public string? NewValues { get; set; }                  // JSON serialized new state
-        public string? Changes { get; set; }                    // Specific field changes
+    [Required]
+    public int EntityID { get; set; }
 
-        // Additional context
-        public string? IPAddress { get; set; }
-        public string? UserAgent { get; set; }
-        public string? Source { get; set; }                     // "Web", "API", "Mobile"
+    // If you want to see when it happened,
+    [Required]
+    [Column(TypeName = "datetime2")]
+    public DateTime Timestamp { get; set; } = DateTime.UtcNow;
 
-        // For failed actions
-        public bool Success { get; set; } = true;
-        public string? ErrorMessage { get; set; }
-    }
+    // If you want to see the delta,
+    [Column(TypeName = "nvarchar(max)")]
+    public string? OldValues { get; set; }
+
+    [Column(TypeName = "nvarchar(max)")]
+    public string? NewValues { get; set; }
+
+    [Column(TypeName = "nvarchar(max)")]
+    public string? Changes { get; set; }
+
+    // If you want to track the source,
+    [StringLength(45)]
+    public string? IPAddress { get; set; }
+
+    [StringLength(500)]
+    public string? UserAgent { get; set; }
+
+    [StringLength(50)]
+    public string? Source { get; set; }
+
+    // If failed,
+    [Required]
+    public bool Success { get; set; } = true;
+
+    [Column(TypeName = "nvarchar(max)")]
+    public string? ErrorMessage { get; set; }
 }
