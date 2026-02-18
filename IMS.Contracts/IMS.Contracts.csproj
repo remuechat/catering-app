@@ -10,4 +10,14 @@
     <ProjectReference Include="..\IMS.Domain\IMS.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Meals\MealItems\Client\" />
+    <Folder Include="Meals\MealProduct\" />
+    <Folder Include="Financial\" />
+    <Folder Include="Audits\" />
+    <Folder Include="Users\" />
+    <Folder Include="Orders\Client\" />
+    <Folder Include="Orders\Server\" />
+  </ItemGroup>
+
 </Project>

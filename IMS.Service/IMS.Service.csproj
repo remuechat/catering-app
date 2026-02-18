@@ -23,13 +23,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IMS.Domain\IMS.Domain.csproj" />
+    <Folder Include="Data\Configurations\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Logistics\" />
-    <Folder Include="Data\Configurations\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\IMS.Domain\IMS.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,15 @@
-﻿using IMS.Domain.Enums;
-using IMS.Domain.Models.Financial.Receipt;
+﻿using IMS.Domain.Entities.Financial.AcknowledgementReceipts;
+using IMS.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace IMS.Domain.Models.Financial;
+namespace IMS.Domain.Entities.Financial;
+
+/// <summary>
+/// For processing payments related to ORDER for online transactions.
+/// TECH DEBT: Probably invert the control from pID to arID.
+/// Payments can be cash-based only. 
+/// </summary>
 
 public class Payment
 {
@@ -16,8 +22,6 @@ public class Payment
     [ForeignKey(nameof(Receipt))]
     [Required(ErrorMessage = "Acknowledgement Receipt ID is required")]
     public int AcknowledgementRecieptID { get; set; }
-
-    //[InverseProperty(nameof(AcknowledgementReceipt.AcknowledgementReceiptID))]
     public virtual AcknowledgementReceipt? Receipt { get; set; }
 
     [Required(ErrorMessage = "Payment Method is required")]

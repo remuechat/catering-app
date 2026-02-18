@@ -5,54 +5,54 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using IMS.Domain.Entities.Meals.MealItems;
+using IMS.Domain.Entities.Orders;
 using IMS.Service.Data;
 
 namespace IMS.Service.Controllers.Product
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MealsController : ControllerBase
+    public class OrdersController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public MealsController(AppDbContext context)
+        public OrdersController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Meals
+        // GET: api/Orders
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Meal>>> GetMeals()
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
-            return await _context.Meals.ToListAsync();
+            return await _context.Orders.ToListAsync();
         }
 
-        // GET: api/Meals/5
+        // GET: api/Orders/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Meal>> GetMeal(int id)
+        public async Task<ActionResult<Order>> GetOrder(Guid id)
         {
-            var meal = await _context.Meals.FindAsync(id);
+            var order = await _context.Orders.FindAsync(id);
 
-            if (meal == null)
+            if (order == null)
             {
                 return NotFound();
             }
 
-            return meal;
+            return order;
         }
 
-        // PUT: api/Meals/5
+        // PUT: api/Orders/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMeal(int id, Meal meal)
+        public async Task<IActionResult> PutOrder(Guid id, Order order)
         {
-            if (id != meal.MealID)
+            if (id != order.OrderID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(meal).State = EntityState.Modified;
+            _context.Entry(order).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace IMS.Service.Controllers.Product
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MealExists(id))
+                if (!OrderExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace IMS.Service.Controllers.Product
             return NoContent();
         }
 
-        // POST: api/Meals
+        // POST: api/Orders
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Meal>> PostMeal(Meal meal)
+        public async Task<ActionResult<Order>> PostOrder(Order order)
         {
-            _context.Meals.Add(meal);
+            _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMeal", new { id = meal.MealID }, meal);
+            return CreatedAtAction("GetOrder", new { id = order.OrderID }, order);
         }
 
-        // DELETE: api/Meals/5
+        // DELETE: api/Orders/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMeal(int id)
+        public async Task<IActionResult> DeleteOrder(Guid id)
         {
-            var meal = await _context.Meals.FindAsync(id);
-            if (meal == null)
+            var order = await _context.Orders.FindAsync(id);
+            if (order == null)
             {
                 return NotFound();
             }
 
-            _context.Meals.Remove(meal);
+            _context.Orders.Remove(order);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool MealExists(int id)
+        private bool OrderExists(Guid id)
         {
-            return _context.Meals.Any(e => e.MealID == id);
+            return _context.Orders.Any(e => e.OrderID == id);
         }
     }
 }

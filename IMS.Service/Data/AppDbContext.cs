@@ -1,14 +1,12 @@
-﻿using System.Linq;
-using System.Reflection;
-using IMS.Domain.Enums;
-using IMS.Domain.Models.Audits;
-using IMS.Domain.Models.Financial;
-using IMS.Domain.Models.Financial.Promos;
-using IMS.Domain.Models.Financial.Receipt;
-using IMS.Domain.Models.Meals.MealItems;
-using IMS.Domain.Models.Meals.MealProduct;
-using IMS.Domain.Models.Orders;
-using IMS.Domain.Models.Users.Identity;
+﻿using IMS.Domain.Entities.Audits;
+using IMS.Domain.Entities.Financial;
+using IMS.Domain.Entities.Financial.AcknowledgementReceipts;
+using IMS.Domain.Entities.Financial.Promos;
+using IMS.Domain.Entities.Logistics;
+using IMS.Domain.Entities.Meals.MealItems;
+using IMS.Domain.Entities.Meals.MealProduct;
+using IMS.Domain.Entities.Orders;
+using IMS.Domain.Entities.Users.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -20,11 +18,16 @@ public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<int>, int>
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
     // CHORE: Add password security, hashing and database salting later on.
 
+    // Basic tracking
+    // TECH DEBT: Make sure that tracking is logged throughout the entire controllers.
+    public DbSet<AuditLog> AuditLogs { get; set; }
 
     // MEALS and related entities
     public DbSet<Meal> Meals { get; set; }
     public DbSet<MealTag> MealTags { get; set; }
-    public DbSet<MealProduct> MealProducts { get; set; }
+    public DbSet<MealProduct> UserMealProducts { get; set; }
+    // Add this later?
+    // public DbSet<MealProduct> CateringProducts { get; set; }
 
     // ORDERING meals and related entities
     public DbSet<Order> Orders { get; set; }
@@ -35,7 +38,8 @@ public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<int>, int>
     public DbSet<AcknowledgementReceipt> AcknowledgementReceipts { get; set; }
 
     // LOGISTICS and related entities
-    // Add DBSet for delivery & event later on, if created
+    public DbSet<LogisticsUpdate> LogisticsUpdates { get; set; }
+    public DbSet<Delivery> Deliveries { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

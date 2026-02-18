@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using IMS.Domain.Enums;
-using Microsoft.EntityFrameworkCore;
 
-namespace IMS.Domain.Models.Meals.MealItems;
+namespace IMS.Domain.Entities.Meals.MealItems;
 
-// This has its own table called MealTags created by OPERATOR
+
+/// <summary>
+/// Represents a tag that categorizes a meal, such as dietary preference, cuisine, or meal type.
+/// This has its own table called MealTags created by OPERATOR
+/// </summary>
+/// 
+/// <remarks>
+/// Meal tags are used to organize and filter meals based on specific attributes or classifications. 
+/// </remarks>
+
 public class MealTag
 {
     [Key]

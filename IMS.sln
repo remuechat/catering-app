@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMS.Browser", "IMS.Browser\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMS.Contracts", "IMS.Contracts\IMS.Contracts.csproj", "{5F49A3A0-3F58-5F40-568C-33FEA2A58A27}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMS.Tests", "IMS.Tests\IMS.Tests.csproj", "{1A5385DB-BF17-4AB7-A3D8-1E63616BF114}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{5F49A3A0-3F58-5F40-568C-33FEA2A58A27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F49A3A0-3F58-5F40-568C-33FEA2A58A27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F49A3A0-3F58-5F40-568C-33FEA2A58A27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A5385DB-BF17-4AB7-A3D8-1E63616BF114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A5385DB-BF17-4AB7-A3D8-1E63616BF114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A5385DB-BF17-4AB7-A3D8-1E63616BF114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A5385DB-BF17-4AB7-A3D8-1E63616BF114}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

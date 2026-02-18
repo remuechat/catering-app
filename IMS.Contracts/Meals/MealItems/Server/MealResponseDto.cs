@@ -1,9 +1,9 @@
 ﻿
 
 using System.Runtime.CompilerServices;
-using IMS.Domain.Models.Meals.MealItems;
+using IMS.Domain.Entities.Meals.MealItems;
 
-namespace IMS.Contracts.Meals.MealItems;
+namespace IMS.Contracts.Meals.MealItems.Server;
 
 public class MealResponseDto
 {
