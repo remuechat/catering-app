@@ -24,7 +24,7 @@ public class Promo
     public string Code { get; set; } = string.Empty;
 
     [Required]
-    [StringLength(500)]
+    [StringLength(100)]
     public string Description { get; set; } = string.Empty;
 
     [Range(0.01, 100.00, ErrorMessage = "Discount percentage must be between 0.01% and 100%")]
@@ -38,43 +38,23 @@ public class Promo
 
     [Range(0, 100000)]
     public int UsedCount { get; set; } = 0;
-    [NotMapped]
-    public int AvailableCount => UsageLimit.HasValue ? (UsageLimit.Value - UsedCount) : int.MaxValue;
 
     [Required]
-    [CustomValidation(typeof(Promo), "ValidateFutureDates")]
     public DateTime ValidFrom { get; set; }
 
     [Required]
-    [CustomValidation(typeof(Promo), "ValidateValidUntil")]
     public DateTime ValidUntil { get; set; }
 
-    public bool IsActive => AvailableCount == 0 ? false : true;
+    [NotMapped]
+    public int AvailableCount => UsageLimit.HasValue ? (UsageLimit.Value - UsedCount) : int.MaxValue;
 
-    // HELPER FUNCTIONS
-    public decimal ApplyDiscount(decimal amount)
-    {
-        return amount * DiscountPercentageValue;
-    }
+    [NotMapped]
+    public bool IsExpired => DateTime.Today > ValidUntil;
 
-    // Custom validation method
-    public static ValidationResult ValidateValidUntil(DateTime validUntil, ValidationContext context)
-    {
-        var instance = (Promo)context.ObjectInstance;
-        if (validUntil <= instance.ValidFrom)
-        {
-            return new ValidationResult("Valid Until date must be after Valid From date");
-        }
-        return ValidationResult.Success!;
-    }
+    [NotMapped]
+    public bool IsDepleted => UsageLimit.HasValue && UsedCount >= UsageLimit.Value;
 
-    public static ValidationResult ValidateFutureDates(DateTime validFrom, ValidationContext context)
-    {
-        if (validFrom < DateTime.Today)
-        {
-            return new ValidationResult("Valid From date cannot be in the past");
-        }
-        return ValidationResult.Success!;
-    }
+    [NotMapped]
+    public bool IsActive => !IsExpired && !IsDepleted;
 
 }

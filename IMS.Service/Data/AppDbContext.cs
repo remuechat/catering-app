@@ -38,7 +38,7 @@ public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<int>, int>
     public DbSet<AcknowledgementReceipt> AcknowledgementReceipts { get; set; }
 
     // LOGISTICS and related entities
-    public DbSet<LogisticsUpdate> LogisticsUpdates { get; set; }
+    public DbSet<DeliveryUpdate> LogisticsUpdates { get; set; }
     public DbSet<Delivery> Deliveries { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

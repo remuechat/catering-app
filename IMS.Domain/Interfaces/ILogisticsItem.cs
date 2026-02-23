@@ -10,9 +10,6 @@ public interface ILogisticsItem
 {
     public DateTime CreatedDate { get; set; }
     public string DeliveryAddress { get; set; }
-    public string? CustomerName { get; set; }
-    public string? CustomerPhone { get; set; }
-    public string? CustomerEmail { get; set; }
     public string? TrackingNumber { get; set; }
     public decimal ShippingCost { get; set; }
     public string? ShippingMethod { get; set; }

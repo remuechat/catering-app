@@ -17,6 +17,8 @@ namespace IMS.Domain.Entities.Users.Identity;
 
 public class AppUser : IdentityUser<int>
 {
+    public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
     public AuthorizationType AuthorizationType { get; set; }
     public virtual ICollection<MealProduct> UserMealProducts { get; set; } = [];
     public virtual ICollection<Order> UserOrders { get; set; } = [];

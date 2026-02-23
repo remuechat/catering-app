@@ -20,7 +20,7 @@ public class Delivery : ILogisticsItem
     public int DeliveryID { get; set; }
 
     // Foreign and navigation keys
-    public ICollection<LogisticsUpdate> DeliveryUpdates { get; set; } = [];
+    public ICollection<DeliveryUpdate> DeliveryUpdates { get; set; } = [];
 
     [Required]
     [ForeignKey("Order")]
@@ -44,17 +44,6 @@ public class Delivery : ILogisticsItem
     [Required]
     [StringLength(500)]
     public string DeliveryAddress { get; set; } = string.Empty;
-    //remove customer details
-    [StringLength(100)]
-    public string? CustomerName { get; set; }
-
-    [StringLength(20)]
-    [Phone]
-    public string? CustomerPhone { get; set; }
-
-    [StringLength(255)]
-    [EmailAddress]
-    public string? CustomerEmail { get; set; }
 
     [StringLength(50)]
     public string? TrackingNumber { get; set; }
