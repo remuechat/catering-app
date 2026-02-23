@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace IMS.Domain.Models.Financial.Promos;
+namespace IMS.Domain.Entities.Financial.Promos;
 
+/// <summary>
+/// The operator generates the promos for their entire business.
+/// Can be added to mealproducts (in case of catering packages).
+/// Can be added to orders itself (in case you are giving sales to customers).
+/// </summary>
 public class Promo
 {
     // Primary key
@@ -33,6 +38,8 @@ public class Promo
 
     [Range(0, 100000)]
     public int UsedCount { get; set; } = 0;
+    [NotMapped]
+    public int AvailableCount => UsageLimit.HasValue ? (UsageLimit.Value - UsedCount) : int.MaxValue;
 
     [Required]
     [CustomValidation(typeof(Promo), "ValidateFutureDates")]
@@ -42,7 +49,7 @@ public class Promo
     [CustomValidation(typeof(Promo), "ValidateValidUntil")]
     public DateTime ValidUntil { get; set; }
 
-    public bool IsActive { get; set; } = true;
+    public bool IsActive => AvailableCount == 0 ? false : true;
 
     // HELPER FUNCTIONS
     public decimal ApplyDiscount(decimal amount)

@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using IMS.Domain.Models.Meals.MealItems;
+using IMS.Domain.Entities.Meals.MealItems;
 using IMS.Service.Data;
 
 namespace IMS.Service.Controllers.Product
 {
-    [Route("api/meal-tags")]
+    [Route("api/[controller]")]
     [ApiController]
     public class MealTagsController : ControllerBase
     {

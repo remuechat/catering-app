@@ -1,4 +1,4 @@
-using IMS.Domain.Models;
+using IMS.Domain.Entities;
 using IMS.Service.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,10 +10,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
-// Use InMemory with name from config (or direct name)
+ //Use InMemory with name from config (or direct name)
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("IMS.TestDB") 
 );
+
+//builder.Services.AddDbContext<AppDbContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 

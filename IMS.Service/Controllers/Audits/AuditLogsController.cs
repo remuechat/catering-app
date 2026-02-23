@@ -5,54 +5,54 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using IMS.Domain.Entities.Meals.MealItems;
+using IMS.Domain.Entities.Audits;
 using IMS.Service.Data;
 
-namespace IMS.Service.Controllers.Product
+namespace IMS.Service.Controllers.Audits
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MealsController : ControllerBase
+    public class AuditLogsController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public MealsController(AppDbContext context)
+        public AuditLogsController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Meals
+        // GET: api/AuditLogs
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Meal>>> GetMeals()
+        public async Task<ActionResult<IEnumerable<AuditLog>>> GetAuditLogs()
         {
-            return await _context.Meals.ToListAsync();
+            return await _context.AuditLogs.ToListAsync();
         }
 
-        // GET: api/Meals/5
+        // GET: api/AuditLogs/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Meal>> GetMeal(int id)
+        public async Task<ActionResult<AuditLog>> GetAuditLog(int id)
         {
-            var meal = await _context.Meals.FindAsync(id);
+            var auditLog = await _context.AuditLogs.FindAsync(id);
 
-            if (meal == null)
+            if (auditLog == null)
             {
                 return NotFound();
             }
 
-            return meal;
+            return auditLog;
         }
 
-        // PUT: api/Meals/5
+        // PUT: api/AuditLogs/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMeal(int id, Meal meal)
+        public async Task<IActionResult> PutAuditLog(int id, AuditLog auditLog)
         {
-            if (id != meal.MealID)
+            if (id != auditLog.AuditLogID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(meal).State = EntityState.Modified;
+            _context.Entry(auditLog).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace IMS.Service.Controllers.Product
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MealExists(id))
+                if (!AuditLogExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace IMS.Service.Controllers.Product
             return NoContent();
         }
 
-        // POST: api/Meals
+        // POST: api/AuditLogs
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Meal>> PostMeal(Meal meal)
+        public async Task<ActionResult<AuditLog>> PostAuditLog(AuditLog auditLog)
         {
-            _context.Meals.Add(meal);
+            _context.AuditLogs.Add(auditLog);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMeal", new { id = meal.MealID }, meal);
+            return CreatedAtAction("GetAuditLog", new { id = auditLog.AuditLogID }, auditLog);
         }
 
-        // DELETE: api/Meals/5
+        // DELETE: api/AuditLogs/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMeal(int id)
+        public async Task<IActionResult> DeleteAuditLog(int id)
         {
-            var meal = await _context.Meals.FindAsync(id);
-            if (meal == null)
+            var auditLog = await _context.AuditLogs.FindAsync(id);
+            if (auditLog == null)
             {
                 return NotFound();
             }
 
-            _context.Meals.Remove(meal);
+            _context.AuditLogs.Remove(auditLog);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool MealExists(int id)
+        private bool AuditLogExists(int id)
         {
-            return _context.Meals.Any(e => e.MealID == id);
+            return _context.AuditLogs.Any(e => e.AuditLogID == id);
         }
     }
 }

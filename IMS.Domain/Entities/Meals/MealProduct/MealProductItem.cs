@@ -1,11 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using IMS.Domain.Models.Meals.MealItems;
+using IMS.Domain.Entities.Meals.MealItems;
 using Microsoft.EntityFrameworkCore;
 
-namespace IMS.Domain.Models.Meals.MealProduct;
+namespace IMS.Domain.Entities.Meals.MealProduct;
 
-// Junction entity owned by MealProduct
+/// <summary>
+/// This is a junction entity owned by MealProduct.
+/// Represents a product item included in a meal, specifying the 
+/// associated meal, quantity, and any special requests.
+/// </summary>
+
 [Owned]
 public class MealProductItem
 {

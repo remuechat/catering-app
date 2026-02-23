@@ -5,54 +5,54 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using IMS.Domain.Entities.Meals.MealItems;
+using IMS.Domain.Entities.Logistics;
 using IMS.Service.Data;
 
-namespace IMS.Service.Controllers.Product
+namespace IMS.Service.Controllers.Logistics
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MealsController : ControllerBase
+    public class DeliveriesController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public MealsController(AppDbContext context)
+        public DeliveriesController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Meals
+        // GET: api/Deliveries
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Meal>>> GetMeals()
+        public async Task<ActionResult<IEnumerable<Delivery>>> GetDeliveries()
         {
-            return await _context.Meals.ToListAsync();
+            return await _context.Deliveries.ToListAsync();
         }
 
-        // GET: api/Meals/5
+        // GET: api/Deliveries/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Meal>> GetMeal(int id)
+        public async Task<ActionResult<Delivery>> GetDelivery(int id)
         {
-            var meal = await _context.Meals.FindAsync(id);
+            var delivery = await _context.Deliveries.FindAsync(id);
 
-            if (meal == null)
+            if (delivery == null)
             {
                 return NotFound();
             }
 
-            return meal;
+            return delivery;
         }
 
-        // PUT: api/Meals/5
+        // PUT: api/Deliveries/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMeal(int id, Meal meal)
+        public async Task<IActionResult> PutDelivery(int id, Delivery delivery)
         {
-            if (id != meal.MealID)
+            if (id != delivery.DeliveryID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(meal).State = EntityState.Modified;
+            _context.Entry(delivery).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace IMS.Service.Controllers.Product
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MealExists(id))
+                if (!DeliveryExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace IMS.Service.Controllers.Product
             return NoContent();
         }
 
-        // POST: api/Meals
+        // POST: api/Deliveries
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Meal>> PostMeal(Meal meal)
+        public async Task<ActionResult<Delivery>> PostDelivery(Delivery delivery)
         {
-            _context.Meals.Add(meal);
+            _context.Deliveries.Add(delivery);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMeal", new { id = meal.MealID }, meal);
+            return CreatedAtAction("GetDelivery", new { id = delivery.DeliveryID }, delivery);
         }
 
-        // DELETE: api/Meals/5
+        // DELETE: api/Deliveries/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMeal(int id)
+        public async Task<IActionResult> DeleteDelivery(int id)
         {
-            var meal = await _context.Meals.FindAsync(id);
-            if (meal == null)
+            var delivery = await _context.Deliveries.FindAsync(id);
+            if (delivery == null)
             {
                 return NotFound();
             }
 
-            _context.Meals.Remove(meal);
+            _context.Deliveries.Remove(delivery);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool MealExists(int id)
+        private bool DeliveryExists(int id)
         {
-            return _context.Meals.Any(e => e.MealID == id);
+            return _context.Deliveries.Any(e => e.DeliveryID == id);
         }
     }
 }
