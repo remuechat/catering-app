@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using IMS.Domain.Models.Financial.Receipt;
+using IMS.Domain.Entities.Financial.AcknowledgementReceipts;
 using IMS.Service.Data;
 
 namespace IMS.Service.Controllers.Finance
 {
-    [Route("api/acklgm-receipt")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AcknowledgementReceiptsController : ControllerBase
     {
