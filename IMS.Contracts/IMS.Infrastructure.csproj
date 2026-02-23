@@ -11,13 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Meals\MealItems\Client\" />
-    <Folder Include="Meals\MealProduct\" />
-    <Folder Include="Financial\" />
-    <Folder Include="Audits\" />
-    <Folder Include="Users\" />
-    <Folder Include="Orders\Client\" />
-    <Folder Include="Orders\Server\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Validators\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 </Project>

@@ -22,11 +22,12 @@ public class AcknowledgementReceipt
 
     [Required]
     public Guid OrderID { get; private set; }
-
+    //remove here
     [Required]
     public int CustomerID { get; private set; }
 
     public int? PromoID { get; private set; }
+    // to here
 
     [ForeignKey("OrderID")]
     public virtual Order? Order { get; private set; }
@@ -88,7 +89,7 @@ public class AcknowledgementReceipt
     [StringLength(3)]
     public string Currency { get; private set; } = "PHP";
 
-    // Customer information
+    // remove Customer information
     [Required]
     [StringLength(100)]
     public string CustomerName { get; private set; } = string.Empty;

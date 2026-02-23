@@ -16,7 +16,6 @@ namespace IMS.Domain.Entities.Orders;
 public class Order
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid OrderID { get; set; }
 
     [ForeignKey(nameof(AcknowledgementReceipt))]
@@ -48,8 +47,7 @@ public class Order
 
     // Order status details
     public DeliveryStatus DeliveryType { get; set; } = DeliveryStatus.OnCart;
-
-    public DeliveryStatus Status { get; set; } = DeliveryStatus.Pending;
+    public DeliveryStatus DeliveryStatus { get; set; } = DeliveryStatus.Pending;
 
     // Order logistics details
     [Required(ErrorMessage = "Address is required")]

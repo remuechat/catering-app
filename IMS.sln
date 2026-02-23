@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMS.Application", "IMS.Appl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMS.Browser", "IMS.Browser\IMS.Browser.csproj", "{7982CCF0-CB51-37AC-652B-1B76EB8839D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMS.Contracts", "IMS.Contracts\IMS.Contracts.csproj", "{5F49A3A0-3F58-5F40-568C-33FEA2A58A27}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMS.Infrastructure", "IMS.Contracts\IMS.Infrastructure.csproj", "{5F49A3A0-3F58-5F40-568C-33FEA2A58A27}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMS.Tests", "IMS.Tests\IMS.Tests.csproj", "{1A5385DB-BF17-4AB7-A3D8-1E63616BF114}"
 EndProject

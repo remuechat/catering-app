@@ -11,7 +11,6 @@ public class Meal
 {
     // Primary key
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int MealID { get; set; }
     public int AppUserID { get; set; }
 

@@ -8,12 +8,10 @@ namespace IMS.Domain.Entities.Meals.MealItems;
 /// Junction entity that uses many [MealTag]s to categorize a [Meal] in the domain model.
 /// </summary>
 
-[Owned]
 public class MealTagJunction
 {
     [ForeignKey(nameof(Meal))]
     public int? MealID { get; set; }
-
 
     [ForeignKey(nameof(MealTag))]
     public int? MealTagID { get; set; }

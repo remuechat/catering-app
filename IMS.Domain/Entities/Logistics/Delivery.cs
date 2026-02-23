@@ -17,7 +17,6 @@ public class Delivery : ILogisticsItem
 {
     // Primary key
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int DeliveryID { get; set; }
 
     // Foreign and navigation keys
@@ -45,7 +44,7 @@ public class Delivery : ILogisticsItem
     [Required]
     [StringLength(500)]
     public string DeliveryAddress { get; set; } = string.Empty;
-
+    //remove customer details
     [StringLength(100)]
     public string? CustomerName { get; set; }
 
