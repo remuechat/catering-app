@@ -19,7 +19,6 @@ namespace IMS.Domain.Entities.Meals.MealProduct;
 public class MealProduct
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int MealProductID { get; set; }
 
     [ForeignKey(nameof(Owner))]
@@ -33,7 +32,7 @@ public class MealProduct
 
     public ICollection<MealProductItem> MealProducts { get; set; } = [];
 
-    public Promo? Promo { get; set; }
+    public virtual Promo? Promo { get; set; }
 
     [Required]
     [StringLength(200)]

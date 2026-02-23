@@ -6,7 +6,7 @@ using IMS.Domain.Enums;
 namespace IMS.Domain.Entities.Logistics;
 
 /// <summary>
-/// This represents the updates that 
+/// This represents the updates in the Logistics part of the business.
 /// </summary>
 public class LogisticsUpdate
 {

@@ -17,7 +17,6 @@ namespace IMS.Domain.Entities.Meals.MealItems;
 public class MealTag
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int MealTagID { get; set; }
 
     [Required]
