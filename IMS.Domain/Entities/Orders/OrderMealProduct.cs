@@ -18,12 +18,18 @@ public class OrderMealProduct
 
     [ForeignKey(nameof(MealProductID))]
     public Guid MealProductID { get; set; }
-    public MealProduct? MealProduct { get; set; }
+    public virtual MealProduct? MealProduct { get; set; }
+
+    // Fix: Rename this to Price at time of order and make it a decimal
+    [Column(TypeName = "decimal(18,2)")]
+    public decimal ItemPrice
+    {
+        get; set; }
 
     // Order item attributes
     [Required(ErrorMessage = "Quantity is required")]
     [Range(1, 1000, ErrorMessage = "Quantity must be between 1 and 1000")]
     public int MealProductOrderQty { get; set; }
     [NotMapped]
-    public decimal SubTotal => MealProductOrderQty * MealProduct.FinalPrice;
+    public decimal SubTotal => MealProductOrderQty * ItemPrice;
 }

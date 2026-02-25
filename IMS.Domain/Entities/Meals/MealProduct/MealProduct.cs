@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using IMS.Domain.Entities.Financial.Promos;
 using IMS.Domain.Entities.Users.Identity;
+using IMS.Service.Services.Promos;
 
 namespace IMS.Domain.Entities.Meals.MealProduct;
 
@@ -35,10 +36,10 @@ public class MealProduct
     public virtual Promo? Promo { get; set; }
 
     [Required]
-    [StringLength(200)]
+    [StringLength(100)] 
     public string ProductName { get; set; } = string.Empty;
 
-    [StringLength(1000)]
+    [StringLength(100)]
     public string? ProductDescription { get; set; }
 
 

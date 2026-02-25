@@ -1,5 +1,6 @@
-﻿using IMS.Application.DTOs.Logistics;
+﻿
 using IMS.Domain.Entities.Logistics;
+using IMS.Service.DTOs.Logistics;
 using System;
 using System.Collections.Generic;
 using System.Text;

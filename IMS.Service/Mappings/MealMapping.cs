@@ -1,5 +1,6 @@
-﻿using IMS.Application.DTOs.Meals;
+﻿
 using IMS.Domain.Entities.Meals.MealItems;
+using IMS.Service.DTOs.Meals;
 
 namespace IMS.Service.Mappings.Meals;
 

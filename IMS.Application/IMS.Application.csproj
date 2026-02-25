@@ -8,13 +8,18 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="ViewModels\Meals\MealProduct\**" />
+    <EmbeddedResource Remove="ViewModels\Meals\MealProduct\**" />
+    <None Remove="ViewModels\Meals\MealProduct\**" />
+  </ItemGroup>
+
 	<ItemGroup>
-		<ProjectReference Include="..\IMS.Services\IMS.Services.csproj" />
+		<ProjectReference Include="..\IMS.Service\IMS.Service.csproj" />
 	</ItemGroup>
 
   <ItemGroup>
     <Folder Include="ViewModels\Logistics\Delivery\" />
-    <Folder Include="ViewModels\Meals\MealProduct\" />
     <Folder Include="ViewModels\Orders\" />
     <Folder Include="ViewModels\Users\Identity\" />
   </ItemGroup>

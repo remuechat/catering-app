@@ -1,10 +1,10 @@
-﻿using IMS.Presentation.DTOs.Audits;
+﻿using IMS.Service.DTOs.Audits;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using IMS.Presentation.ViewModels.Audits;
+using IMS.Application.ViewModels.Audits;
 
-namespace IMS.Presentation.Mappers
+namespace IMS.Application.Mappers
 {
     public static class AuditLogViewMapper
     {

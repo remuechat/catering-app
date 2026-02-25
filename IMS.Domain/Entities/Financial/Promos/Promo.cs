@@ -57,4 +57,16 @@ public class Promo
     [NotMapped]
     public bool IsActive => !IsExpired && !IsDepleted;
 
+
+    public decimal CalculateDiscountedAmount(decimal originalAmount)
+    {
+        decimal discount = originalAmount * (DiscountPercentageValue / 100m);
+        return originalAmount - discount;
+    }   
+    public decimal ApplyDiscount(decimal amount)
+    {
+        decimal discount = amount * (DiscountPercentageValue / 100m);
+        return amount - discount;
+    }
+
 }

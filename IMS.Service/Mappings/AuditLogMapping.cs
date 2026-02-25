@@ -1,8 +1,9 @@
-﻿using IMS.Presentation.DTOs.Audits;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Text;
 using IMS.Domain.Entities.Audits;
+using IMS.Service.DTOs.Audits;
 
 namespace IMS.Service.Mappings
 {

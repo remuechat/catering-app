@@ -1,7 +1,6 @@
 ﻿using System;
 
-namespace IMS.Presentation.DTOs.Audits
-{
+namespace IMS.Service.DTOs.Audits;
     public class AuditLogDto
     {
         public int AuditLogID { get; set; }

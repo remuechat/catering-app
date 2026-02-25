@@ -1,9 +1,10 @@
-﻿using IMS.Application.DTOs.Logistics;
-using IMS.Application.Mappings;
-using IMS.Application.Services.Logistics;
+﻿
+
 using IMS.Domain.Entities.Logistics;
 using IMS.Domain.Enums;
 using IMS.Domain.Interfaces;
+using IMS.Service.DTOs.Logistics;
+using IMS.Service.Mappings;
 using System;
 using System.Collections.Generic;
 using System.Text;

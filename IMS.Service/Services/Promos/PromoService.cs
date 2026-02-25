@@ -3,6 +3,7 @@ using IMS.Domain.Entities.Financial.Promos;
 using System;
 using IMS.Service.DTOs.Financial.Promos;
 using IMS.Service.Mappings;
+using System.Globalization;
 
 namespace IMS.Service.Services.Promos
 {
@@ -31,6 +32,14 @@ namespace IMS.Service.Services.Promos
             return orderAmount - discount;
         }
 
+        public decimal GetFinalPrice(Promo promo, decimal basePrice)
+        {
+            if (!CanApplyPromo(promo, basePrice))
+                return basePrice;
+
+            return promo.CalculateDiscountedAmount(basePrice);
+        }
+
         public void IncrementUsage(Promo promo)
         {
             if (promo.UsageLimit.HasValue && promo.UsedCount >= promo.UsageLimit.Value)
@@ -38,7 +47,6 @@ namespace IMS.Service.Services.Promos
 
             promo.UsedCount++;
         }
-
 
 
         //CreatePromoAsync uses PromoCreateUpdateDto to

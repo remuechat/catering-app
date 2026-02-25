@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IMS.Presentation.Mappings
+namespace IMS.Service.Mappings
 {
     public static class PaymentMapping
     {
@@ -27,9 +27,9 @@ namespace IMS.Presentation.Mappings
         }
 
         // Maps CreateDto to Entity (for saving from WinForms)
-        public static Payment? MapToEntity(PaymentCreateDto dto)
+        public static Payment MapToEntity(PaymentCreateDto dto)
         {
-            if (dto == null) return null;
+            if (dto == null) return null!;
 
             return new Payment
             {
