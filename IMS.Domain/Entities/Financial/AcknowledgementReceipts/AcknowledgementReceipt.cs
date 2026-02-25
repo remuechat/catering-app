@@ -21,38 +21,43 @@ public class AcknowledgementReceipt
     public int AcknowledgementReceiptID { get; private set; }
 
     [Required]
-    public Guid OrderID { get; private set; }
-    //remove here
-    [Required]
-    public int CustomerID { get; private set; }
-
-    public int? PromoID { get; private set; }
-    // to here
+    public Guid OrderID { get; set; }
 
     [ForeignKey("OrderID")]
     public virtual Order? Order { get; private set; }
+
+    [Required]
+    public int CustomerID { get; set; }
 
     [ForeignKey("CustomerID")]
     public virtual AppUser? Customer { get; private set; }
 
     [ForeignKey("PromoID")]
-    public virtual Promo? Promo { get; private set; }
+    public virtual Promo? Promo { get; set; }
 
     // Receipt details
     [Required]
-    public DateTime IssueDate { get; private set; }
+    public DateTime IssueDate { get; set; }
 
     public DateTime? PaymentDate { get; private set; }
 
     [Required]
     [StringLength(50)]
-    public string ReceiptNumber { get; private set; } = string.Empty;
+    public string ReceiptNumber { get; set; } = string.Empty;
 
     [Required]
-    public PaymentStatus Status { get; private set; }
+    public PaymentStatus Status { get; set; }
 
+    public decimal Subtotal { get; set; }
+    public decimal DiscountAmount { get;  set; }
+    public decimal TaxAmount { get; set; }
+    public decimal ShippingCost { get; set; }
+    public decimal GrandTotal { get; set; }
+    public string Currency { get; set; } = "PHP";
+
+    /*
     [Column(TypeName = "nvarchar(MAX)")]
-    [StringLength(1000)]
+    [StringLength(100)]
     public string Notes { get; private set; } = string.Empty;
 
     [Required]
@@ -88,22 +93,11 @@ public class AcknowledgementReceipt
     [Required]
     [StringLength(3)]
     public string Currency { get; private set; } = "PHP";
+    */
 
-    // remove Customer information
-    [Required]
-    [StringLength(100)]
-    public string CustomerName { get; private set; } = string.Empty;
+    public AcknowledgementReceipt() { }
 
-    [Required]
-    [EmailAddress]
-    [StringLength(100)]
-    public string CustomerEmail { get; private set; } = string.Empty;
-
-    [StringLength(500)]
-    public string CustomerAddress { get; private set; } = string.Empty;
-
-    private AcknowledgementReceipt() { }
-
+    /*
     public static AcknowledgementReceipt Create(
         string receiptNumber,
         Guid orderId,
@@ -111,7 +105,7 @@ public class AcknowledgementReceipt
         string customerName,
         string customerEmail,
         decimal subtotal,
-        int? promoId = null,
+        Promo? promoId = null,
         string companyName = "Your Company Name")
     {
         if (string.IsNullOrWhiteSpace(receiptNumber))
@@ -125,10 +119,8 @@ public class AcknowledgementReceipt
             ReceiptNumber = receiptNumber,
             OrderID = orderId,
             CustomerID = customerID,
-            CustomerName = customerName,
-            CustomerEmail = customerEmail,
             Subtotal = subtotal,
-            PromoID = promoId,
+            Promo = promoId,
             IssueDate = DateTime.Now,
             Status = PaymentStatus.Issued,
             Currency = "PHP"
@@ -166,4 +158,5 @@ public class AcknowledgementReceipt
     {
         return 0m;
     }
+    */
 }

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using IMS.Domain.Entities.Users.Identity;
+using IMS.Domain.Enums;
 
 namespace IMS.Domain.Entities.Meals.MealItems;
 
@@ -12,12 +13,13 @@ public class Meal
     // Primary key
     [Key]
     public int MealID { get; set; }
-    public int AppUserID { get; set; }
+    public int RecipientID { get; set; }
 
     // Navigation items
-    [ForeignKey(nameof(AppUserID))]
-    private readonly AppUser? AppUser;
-    public virtual ICollection<MealTagJunction> MealTags { get; set; } = [];
+    [ForeignKey(nameof(RecipientID))]
+    private readonly AppUser? Recipient;
+
+    //removed mealtagjunction
 
     // Attributes
     [Required(ErrorMessage = "Meal.MealName is required.")]
@@ -49,15 +51,23 @@ public class Meal
     [Range(0, 10000, ErrorMessage = "Meal.CaloriesPerServing must be between 0 and 10,000.")]
     public int CaloriesPerServing { get; set; }
 
-    // Timestamp
-    [Required(ErrorMessage = "Meal.LastCreated is required.")]
-    public DateTime LastCreated { get; set; }
+    //Delivery Type Enum
+    [Required(ErrorMessage = "Delivery type is required.")]
+    public DeliveryType DeliveryType {  get; set; }
 
-    [Required(ErrorMessage = "Meal.LastModifiedByUserID is required.")]
-    public int LastModifiedByOperatorID { get; set; } 
+    // Timestamp and Audit
+    [Required]
+    public DateTime LastCreated { get; set; } = DateTime.UtcNow;
 
-    [Required(ErrorMessage = "Meal.LastModifiedDate is required.")]
-    public DateTime LastModifiedDate { get; set; }
+    // UpdatedBy -> Admin/Operator (mapping to AdminUser)
+    [Required]
+    public int LastModifiedByOperatorID { get; set; }
+
+    [ForeignKey(nameof(LastModifiedByOperatorID))]
+    public virtual AppUser? ModifiedByOperator { get; set; }
+
+    [Required]
+    public DateTime LastModifiedDate { get; set; } = DateTime.UtcNow;
 
     // Optional attributes (for now)
     [Url(ErrorMessage = "Meal.ImageUrl must be a valid URL.")]

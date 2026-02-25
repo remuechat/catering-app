@@ -1,4 +1,4 @@
-namespace IMS.Application
+namespace IMS.Presentation
 {
     public partial class Form1 : Form
     {

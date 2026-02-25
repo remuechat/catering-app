@@ -30,7 +30,7 @@ public class MealProduct
     [Required]
     public AppUser? Owner { get; set; }
 
-    public ICollection<MealProductItem> MealProducts { get; set; } = [];
+    public ICollection<MealProductItem> MealProductItems { get; set; } = [];
 
     public virtual Promo? Promo { get; set; }
 
@@ -44,7 +44,7 @@ public class MealProduct
 
     // Computed properties for pricing
     [NotMapped]
-    public decimal ProductBasePrice => MealProducts.Sum(item => item.ItemPrice);
+    public decimal ProductBasePrice => MealProductItems.Sum(item => item.ItemPrice);
 
     [NotMapped]
     public decimal DiscountAmount => ProductBasePrice - FinalPrice;

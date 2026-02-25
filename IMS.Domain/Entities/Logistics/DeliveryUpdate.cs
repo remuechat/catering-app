@@ -8,7 +8,7 @@ namespace IMS.Domain.Entities.Logistics;
 /// <summary>
 /// This represents the updates in the Logistics part of the business.
 /// </summary>
-public class LogisticsUpdate
+public class DeliveryUpdate
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -43,5 +43,5 @@ public class LogisticsUpdate
 
     [Required]
     [StringLength(100)]
-    public string UpdatedBy { get; set; } = String.Empty;
+    public AppUser? UpdatedBy { get; set; }
 }

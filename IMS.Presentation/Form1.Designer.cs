@@ -1,4 +1,4 @@
-﻿namespace IMS.Application
+﻿namespace IMS.Presentation
 {
     partial class Form1
     {

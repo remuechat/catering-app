@@ -23,14 +23,14 @@ namespace IMS.Service.Controllers.Logistics
 
         // GET: api/LogisticsUpdates
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<LogisticsUpdate>>> GetLogisticsUpdates()
+        public async Task<ActionResult<IEnumerable<DeliveryUpdate>>> GetLogisticsUpdates()
         {
             return await _context.LogisticsUpdates.ToListAsync();
         }
 
         // GET: api/LogisticsUpdates/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<LogisticsUpdate>> GetLogisticsUpdate(int id)
+        public async Task<ActionResult<DeliveryUpdate>> GetLogisticsUpdate(int id)
         {
             var logisticsUpdate = await _context.LogisticsUpdates.FindAsync(id);
 
@@ -45,7 +45,7 @@ namespace IMS.Service.Controllers.Logistics
         // PUT: api/LogisticsUpdates/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutLogisticsUpdate(int id, LogisticsUpdate logisticsUpdate)
+        public async Task<IActionResult> PutLogisticsUpdate(int id, DeliveryUpdate logisticsUpdate)
         {
             if (id != logisticsUpdate.DeliveryUpdateID)
             {
@@ -76,7 +76,7 @@ namespace IMS.Service.Controllers.Logistics
         // POST: api/LogisticsUpdates
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<LogisticsUpdate>> PostLogisticsUpdate(LogisticsUpdate logisticsUpdate)
+        public async Task<ActionResult<DeliveryUpdate>> PostLogisticsUpdate(DeliveryUpdate logisticsUpdate)
         {
             _context.LogisticsUpdates.Add(logisticsUpdate);
             await _context.SaveChangesAsync();
