@@ -20,16 +20,20 @@ public class Order
 
     [ForeignKey(nameof(AcknowledgementReceipt))]
     public int? ReceiptID { get; set; }
+    public int? RecipientID { get; set; }
 
-    // Navigation key
-    public AppUser? Recipient { get; set; }
-    public AcknowledgementReceipt? Receipt { get; set; }
-    public ICollection<OrderMealProduct>? OrderItems { get; set; } = [];
+    // Navigation Properties
+    [ForeignKey(nameof(RecipientID))]
+    public virtual AppUser? Recipient { get; set; }
+
+    [ForeignKey(nameof(ReceiptID))]
+    public virtual AcknowledgementReceipt? Receipt { get; set; }
+    public virtual ICollection<OrderMealProduct> OrderItems { get; set; } = new List<OrderMealProduct>();
 
     [NotMapped]
     public decimal OrderTotalAmount
     {
-        get { return OrderItems?.Sum(item => item.ItemPrice) ?? 0; }
+        get { return OrderItems?.Sum(item => item.ItemPrice * item.MealProductOrderQty) ?? 0; }
     }
 
     // Order dated details

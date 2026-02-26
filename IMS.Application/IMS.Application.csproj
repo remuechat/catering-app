@@ -1,13 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IMS.Domain\IMS.Domain.csproj" />
+    <Compile Remove="ViewModels\Meals\MealProduct\**" />
+    <EmbeddedResource Remove="ViewModels\Meals\MealProduct\**" />
+    <None Remove="ViewModels\Meals\MealProduct\**" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\IMS.Service\IMS.Service.csproj" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\Logistics\Delivery\" />
   </ItemGroup>
 
 </Project>

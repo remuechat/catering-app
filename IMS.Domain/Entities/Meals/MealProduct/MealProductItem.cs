@@ -18,10 +18,10 @@ public class MealProductItem
     public int MealID { get; set; }
     public virtual Meal? Meal { get; set; }
 
-    [Range(1, 500)]
+    [Range(1, 100)]
     public int Quantity { get; set; } = 1;
 
-    [StringLength(500)]
+    [StringLength(100)]
     public string? RequestDescription { get; set; }
 
     [NotMapped]
